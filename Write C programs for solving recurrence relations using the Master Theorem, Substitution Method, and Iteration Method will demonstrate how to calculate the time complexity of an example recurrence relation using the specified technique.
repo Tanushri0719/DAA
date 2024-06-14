@@ -1,42 +1,29 @@
-Master Theorem Method
 #include <stdio.h>
-int masterTheorem(int a, int b, int k) {
-    if (k == 0) {
-        return 1;
+int masterTheorem(int a, int b, int k, int n) {
+    if (n == 1) {
+        return k;
     } else {
-        return a * masterTheorem(a, b, k - 1) + b;
+        return a * masterTheorem(a, b, k, n / b);
     }
 }
-int main() {
-    int a = 2, b = 3, k = 3;
-    printf("Result using Master Theorem: %d\n", masterTheorem(a, b, k));
-    return 0;
-}
-Substitution Method
-#include <stdio.h>
 int substitutionMethod(int n) {
     if (n == 0) {
         return 1;
     } else {
-        return 2 * substitutionMethod(n - 1) + 3;
+        return 2 * substitutionMethod(n - 1) + 1;
     }
 }
-int main() {
-    int n = 3;
-    printf("Result using Substitution Method: %d\n", substitutionMethod(n));
-    return 0;
-}
-Iteration Method
-#include <stdio.h>
 int iterationMethod(int n) {
     int result = 1;
     for (int i = 0; i < n; i++) {
-        result = 2 * result + 3;
+        result = 2 * result + 1;
     }
     return result;
 }
 int main() {
-    int n = 3;
-    printf("Result using Iteration Method: %d\n", iterationMethod(n));
+    int n = 5;
+    printf("Using Master Theorem: %d\n", masterTheorem(2, 2, 1, n));
+    printf("Using Substitution Method: %d\n", substitutionMethod(n));
+    printf("Using Iteration Method: %d\n", iterationMethod(n));
     return 0;
 }
